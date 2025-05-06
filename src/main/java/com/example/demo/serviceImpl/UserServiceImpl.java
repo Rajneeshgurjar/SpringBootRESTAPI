@@ -14,9 +14,36 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(User user) {
-		System.out.println("Service class Working");
 		al.add(user);
 		return user;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		return al;
+	}
+
+	@Override
+	public User updateUser(String id, User user) {
+		for(User u:al) {
+			if(u.getId().equals(id)) {
+				u.setName(user.getName());
+				u.setUserName(user.getUserName());
+				return u;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public User deleteUser(String id) {
+		for(User u:al) {
+			if(u.getId().equals(id)) {
+				al.remove(u);
+				return u;
+			}
+		}
+		return null;
 	}
 
 }
