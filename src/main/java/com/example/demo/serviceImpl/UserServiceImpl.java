@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.User;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.service.UserService;
 
 @Service
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService{
 				return u;
 			}
 		}
-		return null;
+		throw new UserNotFoundException("Please Provide Valid User for Update");
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService{
 				return u;
 			}
 		}
-		return null;
+		throw new UserNotFoundException("Please Provide Valid User for delete");
 	}
 
 }
