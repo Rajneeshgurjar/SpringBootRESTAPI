@@ -1,11 +1,28 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
 	
+	@Id
 	public String id;
+	
+	@Column
 	public String name;
+	
+	@Column
 	public String userName;
+	
+	@Column
 	public String password;
+	
+	
+	public User() {
+		
+	}
 	
 	public User(String id, String name, String userName, String password) {
 		super();
