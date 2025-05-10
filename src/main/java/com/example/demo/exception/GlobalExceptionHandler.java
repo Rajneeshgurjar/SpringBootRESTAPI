@@ -18,4 +18,9 @@ public class GlobalExceptionHandler {
 	public String resourceNotFound(NoResourceFoundException e) {
 		return "Somthing went Wrong";
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public String noObject(NullPointerException e) {
+		return "Object is not received";
+	}
 }
