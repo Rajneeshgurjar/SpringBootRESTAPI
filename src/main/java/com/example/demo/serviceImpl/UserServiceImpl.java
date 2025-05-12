@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(String id, User user) {
 
 		
-		 User user1=userRepo.findById(id).get(); 
+		 User user1=userRepo.findById(id).orElse(null); 
 		 if(user1 != null) {
 			 user1.setUserName(user.getUserName());
 			 return userRepo.save(user1); 
@@ -41,12 +41,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User deleteUser(String id) {
-		User user = userRepo.findById(id).get();
+		User user = userRepo.findById(id).orElse(null);
 		if (user != null) {
 			userRepo.delete(user);
 			return user;
 		}
 		throw new UserNotFoundException("Please Provide Valid id for delete");
+	}
+
+	@Override
+	public List<User> getUserByName(String name) {
+				return userRepo.findByName(name);
 	}
 
 }
