@@ -10,4 +10,5 @@ import com.example.demo.entity.User;
 @Repository
 public interface UserRepo extends JpaRepository<User,String>{
 	public List<User> findByName(String name);
+	public User findByUserNameAndPassword(String userName, String password);
 }

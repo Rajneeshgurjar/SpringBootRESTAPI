@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Registration page</title>
+<title>Insert title here</title>
 <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,23 +45,18 @@
     </style>
 </head>
 <body>
-  <div class="container">
-        <h2>User Registration</h2>
-        <form action="/register" method="POST">
-        
-        	<label for="id">Id</label>
-            <input type="text" name="id" id="id" required>
-            
-            <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" required>
-
-            <label for="userName">UserName</label>
+	<div class="container">
+        <h2>User Login</h2>
+        <form action="/authenticate" method="get">
+               	
+            <label for="username">UserName</label>
             <input type="text" name="userName" id="userName" required>
 
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
+			<h5 center>New User ? <a href="/Registration">Register Now</a> </h5>
 
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn">Login</button>
         </form>
     </div>
 </body>

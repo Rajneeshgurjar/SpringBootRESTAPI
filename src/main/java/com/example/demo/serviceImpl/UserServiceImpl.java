@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
 				return userRepo.findByName(name);
 	}
 
+	@Override
+	public User getByUserNameAndPassword(String userName, String password) {
+		return userRepo.findByUserNameAndPassword(userName, password);
+	}
+
 }
