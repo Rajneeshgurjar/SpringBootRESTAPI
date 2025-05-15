@@ -13,50 +13,62 @@ import com.example.demo.service.UserService;
 
 @Controller
 public class ViewController {
-	
+
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	UserController userController;
 	
 	@RequestMapping("/index")
 	public String indexPage() {
 		return "index";
 	}
-	
+
 	@RequestMapping("/Registration")
-	public String userRegistration(){
-		
+	public String userRegistration() {
+
 		return "UserRegistration";
 	}
-	
-	@PostMapping("/register")
-	public String createUser(@RequestParam String id,@RequestParam String name,@RequestParam String userName,@RequestParam String password) {
-		User user=new User(id,name,userName,password);
-		userService.createUser(user);
+
+	/*
+	 * @PostMapping("/register") public String createUser(@RequestParam String
+	 * id,@RequestParam String name,@RequestParam String userName,@RequestParam
+	 * String password) { User user=new User(id,name,userName,password);
+	 * userService.createUser(user); return "redirect:/login"; }
+	 */
+
+	@PostMapping("/register") 
+	 public String createUser(@RequestParam String id,@RequestParam String name,@RequestParam String userName,@RequestParam String password) {
+		User user=userController.createUser(new User(id,name,userName,password));
+		if(user!=null)
 		return "redirect:/login";
+		return "Registration";
 	}
 	
+
 	@GetMapping("/authenticate")
-	public String authenticate(@RequestParam String userName,@RequestParam String password ,Model model) {
-		User user=userService.getByUserNameAndPassword(userName, password);
-		if(user !=null) {
+	public String authenticate(@RequestParam String userName, @RequestParam String password, Model model) {
+		User user = userService.getByUserNameAndPassword(userName, password);
+		if (user != null) {
 			model.addAttribute("name", user.getName());
-			model.addAttribute("id",user.getId());
-			model.addAttribute("userName",user.getUserName());
-			model.addAttribute("password",user.getPassword());
-			
-		return "Home";
+			model.addAttribute("id", user.getId());
+			model.addAttribute("userName", user.getUserName());
+			model.addAttribute("password", user.getPassword());
+
+			return "Home";
 		}
 		return "login";
 	}
-	
+
 	@RequestMapping("/login")
 	public String userLogin() {
 		return "UserLogin";
 	}
-	
+
 	@RequestMapping("/home")
 	public String homePage() {
 		return "Home";
 	}
-	
+
 }
